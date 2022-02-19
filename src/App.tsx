@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link
 } from "react-router-dom";
 
@@ -13,28 +14,29 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">记一笔</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/tags">标签</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/statistics">统计</Link>
             </li>
           </ul>
         </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About/>
+          <Route path="/tags">
+            <Tags/>
           </Route>
-          <Route path="/users">
-            <Users/>
+          <Route path="/money">
+            <Money/>
           </Route>
-          <Route path="/">
-            <Home/>
+          <Route path="/statistics">
+            <Statistics/>
+          </Route>
+          <Redirect exact from="/" to="/money"/>
+          <Route path="*">
+            <NoMatch/>
           </Route>
         </Switch>
       </div>
@@ -44,14 +46,18 @@ function App() {
 
 export default App
 
-function Home() {
-  return <h2>Home</h2>;
+function NoMatch() {
+  return <p>404 NotFound!</p>
 }
 
-function About() {
-  return <h2>About</h2>;
+function Money() {
+  return <h2>记一笔页面</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function Tags() {
+  return <h2>标签页面</h2>;
+}
+
+function Statistics() {
+  return <h2>统计页面</h2>;
 }
