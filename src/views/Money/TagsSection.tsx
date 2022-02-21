@@ -98,12 +98,11 @@ const TagsSection: React.FC = () => {
       <Output/>
       <ol>
         {tags.map(tag =>
-          <li
-            key={tag.name}
-            className={tag === selectedTag ? 'selectedTag' : ''}
-            onClick={() => {
-              onToggleTag(tag)
-            }}>
+          <li key={tag.name}
+              className={tag === selectedTag ? 'selectedTag' : ''}
+              onClick={() => {
+                onToggleTag(tag)
+              }}>
             <span className="icons"><Icon name={tag.iconName}/></span>
             <span>{tag.name}</span>
           </li>
