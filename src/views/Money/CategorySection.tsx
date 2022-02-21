@@ -1,6 +1,6 @@
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
-import React from 'react'
 
 const Wrapper = styled.section`
   margin-top: 50px;
@@ -40,12 +40,26 @@ const Wrapper = styled.section`
     }
   }
 `;
-const CategorySection = () => {
+
+const CategorySection: React.FC = () => {
+  const [categoryList] = useState<('-' | '+')[]>(['-', '+'])
+  const [category, setCategory] = useState<string>('-')
+  const categoryMap = {
+    '-': '支出',
+    '+': '收入'
+  }
   return (
     <Wrapper>
       <ul>
-        <li className="selected">支出</li>
-        <li>收入</li>
+        {categoryList.map(item =>
+          <li key={item}
+              className={category === item ? "selected" : ''}
+              onClick={() => {
+                setCategory(item)
+              }}>
+            {categoryMap[item]}
+          </li>
+        )}
       </ul>
       <span className="date">
           2月21日

@@ -1,6 +1,6 @@
+import React from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
-import React from 'react'
 
 const Wrapper = styled.section`
   display: flex;
@@ -31,7 +31,8 @@ const Wrapper = styled.section`
     }
   }
 `;
-const NumberPadSection = () => {
+
+const NumberPadSection: React.FC = () => {
   return (
     <Wrapper>
       <div className="pad clearfix">
