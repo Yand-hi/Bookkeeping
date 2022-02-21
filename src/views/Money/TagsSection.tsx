@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
 import {Output} from './Output'
@@ -47,58 +47,19 @@ const Wrapper = styled.section`
 `;
 
 const TagsSection: React.FC = () => {
+  const [tags, setTags] = useState<string[]>(
+    ['餐饮', '衣服', '住房', '出行', '酒店', '红包', '转账', '商店', '旅行', '娱乐', '其它', '添加']
+  )
   return (
     <Wrapper>
       <Output/>
       <ol>
-        <li>
-          <span className="icons"><Icon name="餐饮"/></span>
-          <span>餐饮</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="衣服"/></span>
-          <span>服饰</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="住房"/></span>
-          <span>住房</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="出行"/></span>
-          <span>出行</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="酒店"/></span>
-          <span>酒店</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="红包"/></span>
-          <span>红包</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="转账"/></span>
-          <span>转账</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="商店"/></span>
-          <span>商店</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="旅行"/></span>
-          <span>旅行</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="娱乐"/></span>
-          <span>娱乐</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="其它"/></span>
-          <span>其它</span>
-        </li>
-        <li>
-          <span className="icons"><Icon name="添加"/></span>
-          <span>添加</span>
-        </li>
+        {tags.map(tag =>
+          <li key={tag}>
+            <span className="icons"><Icon name={tag}/></span>
+            <span>{tag}</span>
+          </li>
+        )}
       </ol>
     </Wrapper>
   )
