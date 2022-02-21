@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import Icon from '../components/Icon'
 import Layout from '../components/Layout'
 import {TagsSection} from './Money/TagsSection'
+import {NoteSection} from './Money/NoteSection'
 import {CategorySection} from './Money/CategorySection'
-import {NotesSection} from './Money/NotesSection'
 import {NumberPadSection} from './Money/NumberPadSection'
 
 const MyLayout = styled(Layout)`
@@ -26,12 +26,7 @@ const Money = () => {
         </span>
       </CategorySection>
       <TagsSection/>
-      <NotesSection>
-        <label>
-          <span>添加备注</span>
-          <input type="text" placeholder="请输入备注"/>
-        </label>
-      </NotesSection>
+      <NoteSection/>
       <NumberPadSection>
         <div className="pad clearfix">
           <button>1</button>
