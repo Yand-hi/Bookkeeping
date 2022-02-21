@@ -1,6 +1,8 @@
 import styled from 'styled-components'
+import Icon from '../../components/Icon'
+import React from 'react'
 
-const CategorySection = styled.section`
+const Wrapper = styled.section`
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
@@ -38,5 +40,19 @@ const CategorySection = styled.section`
     }
   }
 `;
+const CategorySection = () => {
+  return (
+    <Wrapper>
+      <ul>
+        <li className="selected">支出</li>
+        <li>收入</li>
+      </ul>
+      <span className="date">
+          2月21日
+          <Icon name={"down"}/>
+        </span>
+    </Wrapper>
+  )
+}
 
 export {CategorySection}
