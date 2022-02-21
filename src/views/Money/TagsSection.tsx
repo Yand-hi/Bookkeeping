@@ -47,6 +47,20 @@ const Wrapper = styled.section`
           fill: #c7c7c7;
         }
       }
+
+      &.selectedTag {
+        .icons {
+          background: #3eb575;
+
+          .icon {
+            fill: white;
+          }
+        }
+      }
+
+      &.add {
+        color: #576b95;
+      }
     }
   }
 `;
@@ -65,6 +79,7 @@ const TagsSection: React.FC = () => {
     {iconName: '娱乐', name: '娱乐'},
     {iconName: '其它', name: '其它'},
   ])
+  const [selectedTag, setSelectedTag] = useState<Tags>()
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -75,17 +90,25 @@ const TagsSection: React.FC = () => {
       setTags([...tags, {iconName: '其它', name: tagName}])
     }
   }
+  const onToggleTag = (tag: Tags) => {
+    setSelectedTag(tag)
+  }
   return (
     <Wrapper>
       <Output/>
       <ol>
         {tags.map(tag =>
-          <li key={tag.name}>
+          <li
+            key={tag.name}
+            className={tag === selectedTag ? 'selectedTag' : ''}
+            onClick={() => {
+              onToggleTag(tag)
+            }}>
             <span className="icons"><Icon name={tag.iconName}/></span>
             <span>{tag.name}</span>
           </li>
         )}
-        <li>
+        <li className="add">
           <span className="icons" onClick={addTag}><Icon name="添加"/></span>
           <span>添加</span>
         </li>
