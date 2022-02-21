@@ -1,7 +1,7 @@
 import React from 'react';
 import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
-import Statistics from './views/Statistics'
 import styled from 'styled-components'
+import Statistics from './views/Statistics'
 import NoMatch from './views/NoMatch'
 import Money from './views/Money'
 import Tags from './views/Tags'

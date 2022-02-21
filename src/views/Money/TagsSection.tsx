@@ -1,21 +1,16 @@
+import React from 'react'
 import styled from 'styled-components'
+import Icon from '../../components/Icon'
+import {Output} from './Output'
 
-const TagsSection = styled.section`
-  background: #FFFFFF;
+const Wrapper = styled.section`
+  background: white;
   padding: 12px 16px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-
-  > .output {
-    background: white;
-    font-size: 36px;
-    line-height: 60px;
-    text-align: right;
-    padding: 0 12px;
-  }
 
   > ol {
     width: 100%;
@@ -50,5 +45,63 @@ const TagsSection = styled.section`
     }
   }
 `;
+
+const TagsSection: React.FC = () => {
+  return (
+    <Wrapper>
+      <Output/>
+      <ol>
+        <li>
+          <span className="icons"><Icon name="餐饮"/></span>
+          <span>餐饮</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="衣服"/></span>
+          <span>服饰</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="住房"/></span>
+          <span>住房</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="出行"/></span>
+          <span>出行</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="酒店"/></span>
+          <span>酒店</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="红包"/></span>
+          <span>红包</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="转账"/></span>
+          <span>转账</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="商店"/></span>
+          <span>商店</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="旅行"/></span>
+          <span>旅行</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="娱乐"/></span>
+          <span>娱乐</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="其它"/></span>
+          <span>其它</span>
+        </li>
+        <li>
+          <span className="icons"><Icon name="添加"/></span>
+          <span>添加</span>
+        </li>
+      </ol>
+    </Wrapper>
+  )
+}
 
 export {TagsSection}
