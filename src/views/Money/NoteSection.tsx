@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
@@ -24,12 +24,16 @@ const Wrapper = styled.section`
   }
 `;
 
-const NoteSection: React.FC = () => {
-  const [note, setNote] = useState<string>('')
+type Props = {
+  value: string
+  onChange: (note: string) => void
+}
+const NoteSection: React.FC<Props> = (props) => {
+  const note = props.value
   const refInput = useRef<HTMLInputElement>(null)
   const changValue = () => {
     if (refInput.current !== null) {
-      setNote(refInput.current.value)
+      props.onChange(refInput.current.value)
     }
   }
   return (

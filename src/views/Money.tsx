@@ -26,26 +26,26 @@ const Money = () => {
   })
   return (
     <MyLayout>
+      {selected.category}
+      <hr/>
       {selected.tag.iconName + ','}{selected.tag.name}
       <hr/>
-      {selected.category}
+      {selected.note}
       <CategorySection value={selected.category}
-                       onChange={(category) => {
-                         setSelected({
-                           ...selected,
-                           category
-                         })
-                       }
-                       }/>
+                       onChange={(category) => setSelected({
+                         ...selected,
+                         category
+                       })}/>
       <TagsSection value={selected.tag}
-                   onChange={(tag) => {
-                     setSelected({
-                       ...selected,
-                       tag
-                     })
-                   }
-                   }/>
-      <NoteSection/>
+                   onChange={(tag) => setSelected({
+                     ...selected,
+                     tag
+                   })}/>
+      <NoteSection value={selected.note}
+                   onChange={(note) => setSelected({
+                     ...selected,
+                     note
+                   })}/>
       <NumberPadSection/>
     </MyLayout>
   );
