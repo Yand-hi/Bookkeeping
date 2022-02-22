@@ -34,7 +34,15 @@ const Wrapper = styled.section`
 `;
 
 const NumberPadSection: React.FC = () => {
-  const [output, setOutput] = useState<string>('0')
+  const [output, _setOutput] = useState<string>('0')
+  const setOutput = (output: string) => {
+    if (output.length > 9) {
+      output = output.slice(0, 9)
+    } else if (output.length === 0) {
+      output = ''
+    }
+    _setOutput(output)
+  }
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent
     if (text === null) return
@@ -61,7 +69,7 @@ const NumberPadSection: React.FC = () => {
         break
       case '':
         if (output.length === 1) {
-          setOutput('0')
+          setOutput('')
         } else {
           setOutput(output.slice(0, -1))
         }
