@@ -18,7 +18,7 @@ type Tag = {
 }
 type Category = '-' | '+'
 const Money = () => {
-  const [selected, SetSelected] = useState({
+  const [selected, setSelected] = useState({
     category: '-' as Category,
     tag: {} as Tag,
     note: '',
@@ -27,10 +27,19 @@ const Money = () => {
   return (
     <MyLayout>
       {selected.tag.iconName + ','}{selected.tag.name}
-      <CategorySection/>
+      <hr/>
+      {selected.category}
+      <CategorySection value={selected.category}
+                       onChange={(category) => {
+                         setSelected({
+                           ...selected,
+                           category
+                         })
+                       }
+                       }/>
       <TagsSection value={selected.tag}
                    onChange={(tag) => {
-                     SetSelected({
+                     setSelected({
                        ...selected,
                        tag
                      })
