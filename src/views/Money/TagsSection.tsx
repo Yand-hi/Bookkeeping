@@ -60,13 +60,16 @@ const Wrapper = styled.section`
   }
 `;
 
-type Tags = {
+type Tag = {
   iconName: string,
   name: string
 }
-
-const TagsSection: React.FC = () => {
-  const [tags, setTags] = useState<Tags[]>([
+type Props = {
+  value: Tag,
+  onChange: (tag: Tag) => void
+}
+const TagsSection: React.FC<Props> = (props) => {
+  const [tags, setTags] = useState<Tag[]>([
     {iconName: '餐饮', name: '餐饮'},
     {iconName: '衣服', name: '衣服'},
     {iconName: '住房', name: '住房'},
@@ -79,7 +82,7 @@ const TagsSection: React.FC = () => {
     {iconName: '娱乐', name: '娱乐'},
     {iconName: '其它', name: '其它'},
   ])
-  const [selectedTag, setSelectedTag] = useState<Tags>()
+  const selectedTag = props.value
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -90,8 +93,8 @@ const TagsSection: React.FC = () => {
       setTags([...tags, {iconName: '其它', name: tagName}])
     }
   }
-  const onToggleTag = (tag: Tags) => {
-    setSelectedTag(tag)
+  const onToggleTag = (tag: Tag) => {
+    props.onChange(tag)
   }
   return (
     <Wrapper>
