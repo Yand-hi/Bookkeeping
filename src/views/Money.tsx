@@ -5,7 +5,6 @@ import {TagsSection} from './Money/TagsSection'
 import {NoteSection} from './Money/NoteSection'
 import {CategorySection} from './Money/CategorySection'
 import {NumberPadSection} from './Money/NumberPadSection'
-import {Output} from './Money/Output'
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -17,7 +16,7 @@ const Money = () => {
   return (
     <MyLayout>
       <CategorySection/>
-      <Output/>
+
       <TagsSection/>
       <NoteSection/>
       <NumberPadSection/>

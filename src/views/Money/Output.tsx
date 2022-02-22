@@ -12,15 +12,20 @@ const Wrapper = styled.section`
     line-height: 60px;
     text-align: right;
     padding: 0 12px;
+
+    > .number {
+      max-width: 80vw;
+      overflow: scroll;
+    }
   }
 `
 
-const Output: React.FC = () => {
+const Output: React.FC = (props) => {
   return (
     <Wrapper>
       <div className="output">
         <span>￥</span>
-        <span>100</span>
+        <span className="number">{props.children}</span>
       </div>
     </Wrapper>
   )

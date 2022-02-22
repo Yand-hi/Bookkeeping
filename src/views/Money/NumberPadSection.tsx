@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
+import {Output} from './Output'
 
 const Wrapper = styled.section`
   display: flex;
@@ -48,13 +49,22 @@ const NumberPadSection: React.FC = () => {
       case '7':
       case '8':
       case '9':
-        console.log(text)
+        if (output === '0') {
+          setOutput(text)
+        } else {
+          setOutput(output + text)
+        }
         break
       case '.':
-        console.log(text)
+        if (output.indexOf('.') >= 0) return
+        setOutput(output + '.')
         break
       case '':
-        console.log('delete')
+        if (output.length === 1) {
+          setOutput('0')
+        } else {
+          setOutput(output.slice(0, -1))
+        }
         break
       case '确定':
         console.log(text)
@@ -65,6 +75,7 @@ const NumberPadSection: React.FC = () => {
     <Wrapper>
       <div className="pad clearfix"
            onClick={onClickButtonWrapper}>
+        <Output>{output}</Output>
         <button>1</button>
         <button>2</button>
         <button>3</button>
