@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
 import {Output} from './NumberPadSection/Output'
@@ -34,18 +34,28 @@ const Wrapper = styled.section`
   }
 `;
 
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutput] = useState<string>('0')
+type Props = {
+  value: number,
+  onChange: (amount: number) => void,
+  onOk?: () => void
+}
+const NumberPadSection: React.FC<Props> = (props) => {
+  const output = props.value.toString()
   const setOutput = (output: string) => {
+    let value
     if (output.length > 9) {
-      output = output.slice(0, 9)
+      value = parseFloat(output.slice(0, 9))
+    } else {
+      value = parseFloat(output)
     }
-    _setOutput(output)
+    props.onChange(value)
   }
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent
     if (text === null) return
-    if (text === '确定') console.log('ok')
+    if (text === '确定') {
+      if (props.onOk) props.onOk()
+    }
     setOutput(generateOutput(text, output))
   }
   return (

@@ -19,6 +19,7 @@ const generateOutput = (text: string, output = '0') => {
       if (output.indexOf('.') >= 0) {
         return output
       }
+      console.log(output + '.')
       return output + '.'
     case '':
       if (output.length === 1) {

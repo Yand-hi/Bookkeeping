@@ -31,6 +31,8 @@ const Money = () => {
       {selected.tag.iconName + ','}{selected.tag.name}
       <hr/>
       {selected.note}
+      <hr/>
+      {selected.amount}
       <CategorySection value={selected.category}
                        onChange={(category) => setSelected({
                          ...selected,
@@ -46,7 +48,14 @@ const Money = () => {
                      ...selected,
                      note
                    })}/>
-      <NumberPadSection/>
+      <NumberPadSection value={selected.amount}
+                        onChange={(amount) => setSelected({
+                          ...selected,
+                          amount
+                        })}
+                        onOk={() => {
+                          console.log('OK')
+                        }}/>
     </MyLayout>
   );
 }
