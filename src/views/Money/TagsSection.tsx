@@ -1,14 +1,9 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
-import {Output} from './Output'
-
-type Tags = {
-  iconName: string,
-  name: string
-}
 
 const Wrapper = styled.section`
+
   background: white;
   padding: 12px 16px;
   flex-grow: 1;
@@ -19,7 +14,7 @@ const Wrapper = styled.section`
 
   > ol {
     width: 100%;
-    max-height: 25vh;
+    height: 25vh;
     display: flex;
     border-top: 1px solid #e5e5e5;
     flex-wrap: wrap;
@@ -65,6 +60,11 @@ const Wrapper = styled.section`
   }
 `;
 
+type Tags = {
+  iconName: string,
+  name: string
+}
+
 const TagsSection: React.FC = () => {
   const [tags, setTags] = useState<Tags[]>([
     {iconName: '餐饮', name: '餐饮'},
@@ -95,7 +95,6 @@ const TagsSection: React.FC = () => {
   }
   return (
     <Wrapper>
-      <Output/>
       <ol>
         {tags.map(tag =>
           <li key={tag.name}

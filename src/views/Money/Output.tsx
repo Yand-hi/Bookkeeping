@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
+  position: absolute;
+  left: 10px;
+  top: 20vh;
+
   > .output {
     background: white;
     font-size: 36px;
