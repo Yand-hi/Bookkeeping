@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Icon from '../../components/Icon'
-import {Output} from './Output'
+import {Output} from './NumberPadSection/Output'
+import {generateOutput} from './NumberPadSection/generateOutput'
 
 const Wrapper = styled.section`
   display: flex;
@@ -38,46 +39,14 @@ const NumberPadSection: React.FC = () => {
   const setOutput = (output: string) => {
     if (output.length > 9) {
       output = output.slice(0, 9)
-    } else if (output.length === 0) {
-      output = ''
     }
     _setOutput(output)
   }
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent
     if (text === null) return
-    switch (text) {
-      case '0':
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-        if (output === '0') {
-          setOutput(text)
-        } else {
-          setOutput(output + text)
-        }
-        break
-      case '.':
-        if (output.indexOf('.') >= 0) return
-        setOutput(output + '.')
-        break
-      case '':
-        if (output.length === 1) {
-          setOutput('')
-        } else {
-          setOutput(output.slice(0, -1))
-        }
-        break
-      case '确定':
-        console.log(text)
-        break
-    }
+    if (text === '确定') console.log('ok')
+    setOutput(generateOutput(text, output))
   }
   return (
     <Wrapper>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   position: absolute;
   left: 10px;
-  top: 20vh;
+  top: 21vh;
 
   > .output {
     background: white;
@@ -14,8 +14,7 @@ const Wrapper = styled.section`
     padding: 0 12px;
 
     > .number {
-      max-width: 80vw;
-      overflow: scroll;
+      margin-left: 10px;
     }
   }
 `
