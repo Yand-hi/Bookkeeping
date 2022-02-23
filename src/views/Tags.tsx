@@ -13,6 +13,17 @@ const Wrapper = styled.section`
   justify-content: flex-end;
   align-items: flex-start;
 
+  p {
+    margin: 20px auto 10px;
+    color: #acacac;
+    border-bottom: 1px solid #acacac;
+  }
+
+  ul {
+    margin: 30px auto;
+    color: lightslategray;
+  }
+
   > ol {
     width: 100%;
     display: flex;
@@ -25,39 +36,39 @@ const Wrapper = styled.section`
       align-items: center;
       font-size: 14px;
       color: black;
-      margin: 10px 0;
+      margin: 10px 0 6px;
 
       .icons {
-        background: #3eb575;
-        width: 40px;
-        height: 40px;
-        padding: 5px;
-        margin-bottom: 8px;
+        background: white;
+        margin-bottom: 6px;
         border-radius: 20px;
 
         .icon {
-          width: 30px;
-          height: 30px;
-          fill: white;
+          width: 40px;
+          height: 40px;
+          fill: #3eb575;
         }
       }
 
       &.add {
         color: #576b95;
+      }
+    }
 
-        .icons {
-          background: white;
-
-          .icon {
-            fill: #3eb575;
-          }
+    &.plus {
+      > li {
+        .icon {
+          fill: #f0b73a;
         }
       }
     }
   }
 `;
+
 const Tags = () => {
   const {tags, setTags} = useTags()
+  const reduceTags = tags.filter(item => item.id === '0')
+  const plusTags = tags.filter(item => item.id === '1')
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -65,15 +76,28 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      //  TODO
       setTags([...tags, {iconName: '其它', name: tagName, id: '0'}])
+    }
+  }
+  const addPlusTag = () => {
+    const tagName = window.prompt('请输入新标签名:')
+    if (tagName) {
+      const oldTags = tags.map(tag => tag.name)
+      if (oldTags.indexOf(tagName) >= 0) {
+        return window.alert('该标签已存在')
+      }
+      setTags([...tags, {iconName: '其它', name: tagName, id: '1'}])
     }
   }
   return (
     <Layout>
       <Wrapper>
+        <ul>
+          <h1>管理标签</h1>
+        </ul>
+        <p>支出标签</p>
         <ol>
-          {tags.map(tag =>
+          {reduceTags.map(tag =>
             <li key={tag.name}>
               <span className="icons"><Icon name={tag.iconName}/></span>
               <span>{tag.name}</span>
@@ -84,8 +108,22 @@ const Tags = () => {
             <span>添加</span>
           </li>
         </ol>
+        <p>收入标签</p>
+        <ol className="plus">
+          {plusTags.map(tag =>
+            <li key={tag.name}>
+              <span className="icons"><Icon name={tag.iconName}/></span>
+              <span>{tag.name}</span>
+            </li>
+          )}
+          <li className="add">
+            <span className="icons" onClick={addPlusTag}><Icon name="添加"/></span>
+            <span>添加</span>
+          </li>
+        </ol>
       </Wrapper>
     </Layout>
   )
 }
+
 export default Tags
