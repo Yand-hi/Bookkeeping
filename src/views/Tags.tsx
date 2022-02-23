@@ -4,9 +4,7 @@ import {useTags} from 'hooks/useTags'
 import Icon from 'components/Icon'
 import styled from 'styled-components'
 
-
 const Wrapper = styled.section`
-
   background: white;
   padding: 12px 16px;
   flex-grow: 1;
@@ -17,13 +15,11 @@ const Wrapper = styled.section`
 
   > ol {
     width: 100%;
-    height: 25vh;
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
 
     > li {
-      width: 20%;
+      width: 25%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -33,20 +29,29 @@ const Wrapper = styled.section`
 
       .icons {
         background: #3eb575;
-        width: 32px;
-        height: 32px;
-        padding: 4px;
-        border-radius: 15px;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        margin-bottom: 8px;
+        border-radius: 20px;
 
         .icon {
-          width: 24px;
-          height: 24px;
+          width: 30px;
+          height: 30px;
           fill: white;
         }
       }
 
       &.add {
         color: #576b95;
+
+        .icons {
+          background: white;
+
+          .icon {
+            fill: #3eb575;
+          }
+        }
       }
     }
   }

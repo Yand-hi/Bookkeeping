@@ -34,7 +34,8 @@ const Wrapper = styled.section`
         width: 32px;
         height: 32px;
         padding: 4px;
-        border-radius: 15px;
+        margin-bottom: 4px;
+        border-radius: 16px;
 
         .icon {
           width: 24px;
@@ -44,6 +45,8 @@ const Wrapper = styled.section`
       }
 
       &.selectedTag {
+        color: #3eb575;
+
         .icons {
           background: #3eb575;
 
