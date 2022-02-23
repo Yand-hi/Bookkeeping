@@ -14,7 +14,8 @@ const MyLayout = styled(Layout)`
 
 type Tag = {
   iconName: string,
-  name: string
+  name: string,
+  id: '0' | '1'
 }
 type Category = '0' | '1'
 const Money = () => {
@@ -35,11 +36,12 @@ const Money = () => {
       <CategorySection value={selected.category}
                        onChange={category => onChange({category})}/>
       <TagsSection value={selected.tag}
-                   category={selected.category}
+                   types={selected.category}
                    onChange={tag => onChange({tag})}/>
       <NoteSection value={selected.note}
                    onChange={note => onChange({note})}/>
       <NumberPadSection value={selected.amount}
+                        types={selected.category}
                         onChange={amount => onChange({amount})}
                         onOk={() => {
                           console.log('OK')

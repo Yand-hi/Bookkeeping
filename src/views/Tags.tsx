@@ -65,7 +65,8 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName}])
+      //  TODO
+      setTags([...tags, {iconName: '其它', name: tagName, id: '0'}])
     }
   }
   return (

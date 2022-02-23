@@ -77,17 +77,21 @@ const Wrapper = styled.section`
 
 type Tag = {
   iconName: string,
-  name: string
+  name: string,
+  id: '0' | '1'
 }
 type Props = {
   value: Tag,
-  category: '0' | '1',
+  types: '0' | '1',
   onChange: (tag: Tag) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags()
+  const types = props.types
+  const reduceTags = tags.filter(item => item.id === '0')
+  const plusTags = tags.filter(item => item.id === '1')
+  const partTags = types === '0' ? reduceTags : plusTags
   const selectedTag = props.value
-  const category = props.category
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -95,7 +99,7 @@ const TagsSection: React.FC<Props> = (props) => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName}])
+      setTags([...tags, {iconName: '其它', name: tagName, id: types === '0' ? '0' : '1'}])
     }
   }
   const onToggleTag = (tag: Tag) => {
@@ -104,9 +108,9 @@ const TagsSection: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <ol>
-        {tags.map(tag =>
+        {partTags.map(tag =>
           <li key={tag.name}
-              className={tag === selectedTag ? 'selectedTag' + `${category}` : ''}
+              className={tag === selectedTag ? 'selectedTag' + `${types}` : ''}
               onClick={() => {
                 onToggleTag(tag)
               }}>

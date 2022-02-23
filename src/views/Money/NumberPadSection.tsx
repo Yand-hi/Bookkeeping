@@ -20,8 +20,15 @@ const Wrapper = styled.section`
       border-radius: 8px;
       border: 4px solid #fafafa;
 
-      &.ok {
+      &.ok0 {
         background: #3eb575;
+        color: white;
+        height: 192px;
+        float: right;
+      }
+
+      &.ok1 {
+        background: #f0b73a;
         color: white;
         height: 192px;
         float: right;
@@ -36,11 +43,13 @@ const Wrapper = styled.section`
 
 type Props = {
   value: number,
+  types: '0' | '1',
   onChange: (amount: number) => void,
   onOk?: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
   const [output, setOutput] = useState(props.value.toString())
+  const types = props.types
   const _setOutput = (output: string) => {
     let newOutput: string
     if (output.length > 10) {
@@ -73,7 +82,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button>4</button>
         <button>5</button>
         <button>6</button>
-        <button className="ok">确定</button>
+        <button className={"ok" + `${types}`}>确定</button>
         <button>7</button>
         <button>8</button>
         <button>9</button>
