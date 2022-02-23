@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   position: absolute;
   left: 10px;
-  top: 21vh;
+  top: 20vh;
 
   > .output {
     background: white;

@@ -14,7 +14,7 @@ const Wrapper = styled.section`
 
   > ol {
     width: 100%;
-    height: 25vh;
+    height: 26vh;
     display: flex;
     border-top: 1px solid #e5e5e5;
     flex-wrap: wrap;
@@ -44,11 +44,23 @@ const Wrapper = styled.section`
         }
       }
 
-      &.selectedTag {
+      &.selectedTag0 {
         color: #3eb575;
 
         .icons {
           background: #3eb575;
+
+          .icon {
+            fill: white;
+          }
+        }
+      }
+
+      &.selectedTag1 {
+        color: #f0b73a;
+
+        .icons {
+          background: #f0b73a;
 
           .icon {
             fill: white;
@@ -69,11 +81,13 @@ type Tag = {
 }
 type Props = {
   value: Tag,
+  category: '0' | '1',
   onChange: (tag: Tag) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags()
   const selectedTag = props.value
+  const category = props.category
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -92,7 +106,7 @@ const TagsSection: React.FC<Props> = (props) => {
       <ol>
         {tags.map(tag =>
           <li key={tag.name}
-              className={tag === selectedTag ? 'selectedTag' : ''}
+              className={tag === selectedTag ? 'selectedTag' + `${category}` : ''}
               onClick={() => {
                 onToggleTag(tag)
               }}>

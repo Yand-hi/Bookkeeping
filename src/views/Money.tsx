@@ -16,10 +16,10 @@ type Tag = {
   iconName: string,
   name: string
 }
-type Category = '-' | '+'
+type Category = '0' | '1'
 const Money = () => {
   const [selected, setSelected] = useState({
-    category: '-' as Category,
+    category: '0' as Category,
     tag: {} as Tag,
     note: '',
     amount: 0
@@ -32,16 +32,10 @@ const Money = () => {
   }
   return (
     <MyLayout>
-      {selected.category}
-      <hr/>
-      {selected.tag.iconName + ','}{selected.tag.name}
-      <hr/>
-      {selected.note}
-      <hr/>
-      {selected.amount}
       <CategorySection value={selected.category}
                        onChange={category => onChange({category})}/>
       <TagsSection value={selected.tag}
+                   category={selected.category}
                    onChange={tag => onChange({tag})}/>
       <NoteSection value={selected.note}
                    onChange={note => onChange({note})}/>
