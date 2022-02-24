@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import Layout from 'components/Layout'
 import {useTags} from 'hooks/useTags'
+import {createId} from 'lib/createId'
 import Icon from 'components/Icon'
 import styled from 'styled-components'
 
@@ -83,7 +84,7 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, key: '0'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: '0', id: createId()}])
     }
   }
   const addPlusTag = () => {
@@ -93,7 +94,7 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, key: '1'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: '1', id: createId()}])
     }
   }
   return (
@@ -106,7 +107,7 @@ const Tags = () => {
         <ol>
           {reduceTags.map(tag =>
             <li key={tag.name}>
-              <Link to={'/tags/' + tag.name}>
+              <Link to={'/tags/' + tag.id}>
                 <span className="icons"><Icon name={tag.iconName}/></span>
                 <span>{tag.name}</span>
               </Link>
@@ -121,7 +122,7 @@ const Tags = () => {
         <ol className="plus">
           {plusTags.map(tag =>
             <li key={tag.name}>
-              <Link to={'/tags/' + tag.name}>
+              <Link to={'/tags/' + tag.id}>
                 <span className="icons"><Icon name={tag.iconName}/></span>
                 <span>{tag.name}</span>
               </Link>

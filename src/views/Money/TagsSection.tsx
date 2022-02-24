@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Icon from 'components/Icon'
 import {useTags} from 'hooks/useTags'
+import {createId} from 'lib/createId'
 
 const Wrapper = styled.section`
   background: white;
@@ -75,15 +76,10 @@ const Wrapper = styled.section`
   }
 `;
 
-type Tag = {
-  iconName: string,
-  name: string,
-  key: '0' | '1'
-}
 type Props = {
-  value: Tag,
+  value: number[],
   types: '0' | '1',
-  onChange: (tag: Tag) => void
+  onChange: (selected: number[]) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags()
@@ -91,7 +87,7 @@ const TagsSection: React.FC<Props> = (props) => {
   const reduceTags = tags.filter(item => item.key === '0')
   const plusTags = tags.filter(item => item.key === '1')
   const partTags = types === '0' ? reduceTags : plusTags
-  const selectedTag = props.value
+  const selectedTagId = props.value
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -99,20 +95,20 @@ const TagsSection: React.FC<Props> = (props) => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, key: types === '0' ? '0' : '1'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: types === '0' ? '0' : '1', id: createId()}])
     }
   }
-  const onToggleTag = (tag: Tag) => {
-    props.onChange(tag)
+  const onToggleTag = (tagId: number) => {
+    props.onChange([tagId])
   }
   return (
     <Wrapper>
       <ol>
         {partTags.map(tag =>
           <li key={tag.name}
-              className={tag === selectedTag ? 'selectedTag' + `${types}` : ''}
+              className={tag.id === selectedTagId[0] ? 'selectedTag' + `${types}` : ''}
               onClick={() => {
-                onToggleTag(tag)
+                onToggleTag(tag.id)
               }}>
             <span className="icons"><Icon name={tag.iconName}/></span>
             <span>{tag.name}</span>
