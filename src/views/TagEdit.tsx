@@ -51,7 +51,7 @@ type Params = {
   id: string
 }
 const TagEdit: React.FC = () => {
-  const {findTag} = useTags()
+  const {findTag, updateTag} = useTags()
   const {id} = useParams<Params>()
   const tag = findTag(parseInt(id))
   return (
@@ -71,8 +71,11 @@ const TagEdit: React.FC = () => {
       <InputWrapper>
         <Input label="标签名:"
                type="text"
-               placeholder="标签名"
-               value={tag.name}/>
+               placeholder="编辑标签名..."
+               value={tag.name}
+               onChange={(e) =>
+                 updateTag(tag.id, {name: e.target.value})
+               }/>
       </InputWrapper>
       <Center>
         <Space/>

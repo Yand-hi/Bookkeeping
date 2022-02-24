@@ -32,7 +32,29 @@ const defaultTags: Tag[] = [
 const useTags = () => {
   const [tags, setTags] = useState<Tag[]>(defaultTags)
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0]
-  return {tags, setTags, findTag}
+  const findIndex = (id: number) => {
+    //  防止错误修改
+    let result = -1
+    for (let i = 0; i < tags.length; i++) {
+      if (id === tags[i].id) {
+        result = i
+        break
+      }
+    }
+    return result
+  }
+  const updateTag = (id: number, obj: { name: string }) => {
+    // 获取修改的 tag 的下标
+    const index = findIndex(id)
+    // 深拷贝 tags 得到 tagsClone
+    const tagsClone = JSON.parse(JSON.stringify(tags))
+    // 删掉 tagsClone 的第 index 项，换成新的对象
+    const iconName = tagsClone[index].iconName
+    const key = tagsClone[index].key
+    tagsClone.splice(index, 1, {iconName, name: obj.name, key, id});
+    setTags(tagsClone)
+  }
+  return {tags, setTags, findTag, updateTag, findIndex}
 }
 
 export {useTags}
