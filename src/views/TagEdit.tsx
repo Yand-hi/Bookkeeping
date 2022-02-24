@@ -50,17 +50,18 @@ const IconWrapper = styled.span`
 type Params = {
   id: string
 }
+type Tag = {
+  iconName: string,
+  name: string,
+  key: '0' | '1',
+  id: number,
+}
 const TagEdit: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags()
   const {id} = useParams<Params>()
   const tag = findTag(parseInt(id))
-  return (
-    <Layout>
-      <TopBar>
-        <Icon name="left"/>
-        <span>编辑标签</span>
-        <Icon/>
-      </TopBar>
+  const tagContent = (tag: Tag) => (
+    <div>
       <Space/>
       <Space/>
       <Center>
@@ -86,6 +87,16 @@ const TagEdit: React.FC = () => {
         }>删除标签
         </Button>
       </Center>
+    </div>
+  )
+  return (
+    <Layout>
+      <TopBar>
+        <Icon name="left"/>
+        <span>编辑标签</span>
+        <Icon/>
+      </TopBar>
+      {tag ? tagContent(tag) : <Center>tag 不存在</Center>}
     </Layout>
   )
 }
