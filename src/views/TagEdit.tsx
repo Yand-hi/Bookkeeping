@@ -51,7 +51,7 @@ type Params = {
   id: string
 }
 const TagEdit: React.FC = () => {
-  const {findTag, updateTag} = useTags()
+  const {findTag, updateTag, deleteTag} = useTags()
   const {id} = useParams<Params>()
   const tag = findTag(parseInt(id))
   return (
@@ -81,7 +81,10 @@ const TagEdit: React.FC = () => {
         <Space/>
         <Space/>
         <Space/>
-        <Button>删除标签</Button>
+        <Button onClick={() =>
+          deleteTag(tag.id)
+        }>删除标签
+        </Button>
       </Center>
     </Layout>
   )
