@@ -6,9 +6,9 @@ type Params = {
   id: string
 }
 const TagEdit: React.FC = () => {
-  const {tags} = useTags()
+  const {findTag} = useTags()
   const {id} = useParams<Params>()
-  const tag = tags.filter(tag => tag.id === parseInt(id))[0]
+  const tag = findTag(parseInt(id))
   return (
     <h1>{tag.name}</h1>
   )
