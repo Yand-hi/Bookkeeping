@@ -15,7 +15,7 @@ const MyLayout = styled(Layout)`
 type Tag = {
   iconName: string,
   name: string,
-  id: '0' | '1'
+  key: '0' | '1'
 }
 type Category = '0' | '1'
 const Money = () => {

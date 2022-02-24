@@ -78,7 +78,7 @@ const Wrapper = styled.section`
 type Tag = {
   iconName: string,
   name: string,
-  id: '0' | '1'
+  key: '0' | '1'
 }
 type Props = {
   value: Tag,
@@ -88,8 +88,8 @@ type Props = {
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags()
   const types = props.types
-  const reduceTags = tags.filter(item => item.id === '0')
-  const plusTags = tags.filter(item => item.id === '1')
+  const reduceTags = tags.filter(item => item.key === '0')
+  const plusTags = tags.filter(item => item.key === '1')
   const partTags = types === '0' ? reduceTags : plusTags
   const selectedTag = props.value
   const addTag = () => {
@@ -99,7 +99,7 @@ const TagsSection: React.FC<Props> = (props) => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, id: types === '0' ? '0' : '1'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: types === '0' ? '0' : '1'}])
     }
   }
   const onToggleTag = (tag: Tag) => {

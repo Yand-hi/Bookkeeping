@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 import Layout from 'components/Layout'
 import {useTags} from 'hooks/useTags'
 import Icon from 'components/Icon'
@@ -31,12 +32,18 @@ const Wrapper = styled.section`
 
     > li {
       width: 25%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       font-size: 14px;
       color: black;
       margin: 10px 0 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
       .icons {
         background: white;
@@ -67,8 +74,8 @@ const Wrapper = styled.section`
 
 const Tags = () => {
   const {tags, setTags} = useTags()
-  const reduceTags = tags.filter(item => item.id === '0')
-  const plusTags = tags.filter(item => item.id === '1')
+  const reduceTags = tags.filter(item => item.key === '0')
+  const plusTags = tags.filter(item => item.key === '1')
   const addTag = () => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -76,7 +83,7 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, id: '0'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: '0'}])
     }
   }
   const addPlusTag = () => {
@@ -86,7 +93,7 @@ const Tags = () => {
       if (oldTags.indexOf(tagName) >= 0) {
         return window.alert('该标签已存在')
       }
-      setTags([...tags, {iconName: '其它', name: tagName, id: '1'}])
+      setTags([...tags, {iconName: '其它', name: tagName, key: '1'}])
     }
   }
   return (
@@ -99,8 +106,10 @@ const Tags = () => {
         <ol>
           {reduceTags.map(tag =>
             <li key={tag.name}>
-              <span className="icons"><Icon name={tag.iconName}/></span>
-              <span>{tag.name}</span>
+              <Link to={'/tags/' + tag.name}>
+                <span className="icons"><Icon name={tag.iconName}/></span>
+                <span>{tag.name}</span>
+              </Link>
             </li>
           )}
           <li className="add">
@@ -112,8 +121,10 @@ const Tags = () => {
         <ol className="plus">
           {plusTags.map(tag =>
             <li key={tag.name}>
-              <span className="icons"><Icon name={tag.iconName}/></span>
-              <span>{tag.name}</span>
+              <Link to={'/tags/' + tag.name}>
+                <span className="icons"><Icon name={tag.iconName}/></span>
+                <span>{tag.name}</span>
+              </Link>
             </li>
           )}
           <li className="add">
