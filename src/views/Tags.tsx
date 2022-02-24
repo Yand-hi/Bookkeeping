@@ -18,11 +18,10 @@ const Wrapper = styled.section`
   p {
     margin: 20px auto 10px;
     color: #acacac;
-    border-bottom: 1px solid #acacac;
   }
 
-  ul {
-    margin: 30px auto;
+  div {
+    margin: 20px auto;
     color: lightslategray;
   }
 
@@ -100,9 +99,9 @@ const Tags = () => {
   return (
     <Layout>
       <Wrapper>
-        <ul>
+        <div>
           <h1>管理标签</h1>
-        </ul>
+        </div>
         <p>支出标签</p>
         <ol>
           {reduceTags.map(tag =>

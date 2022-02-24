@@ -28,6 +28,25 @@ const Button = styled.button`
   border-radius: 4px;
   color: white;
 `;
+const IconWrapper = styled.span`
+  .icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  &.editTag0 {
+    > .icon {
+      fill: #3eb575;
+    }
+  }
+
+  &.editTag1 {
+    > .icon {
+      fill: #f0b73a;
+    }
+  }
+`
+
 type Params = {
   id: string
 }
@@ -42,8 +61,15 @@ const TagEdit: React.FC = () => {
         <span>编辑标签</span>
         <Icon/>
       </TopBar>
+      <Space/>
+      <Space/>
+      <Center>
+        <IconWrapper className={'editTag' + tag.key}>
+          <Icon name={tag.iconName}/>
+        </IconWrapper>
+      </Center>
       <InputWrapper>
-        <Input label="标签名"
+        <Input label="标签名:"
                type="text"
                placeholder="标签名"
                value={tag.name}/>
