@@ -11,7 +11,7 @@ const Wrapper = styled.section`
     color: black;
     padding: 5px 10px;
     text-align: center;
-    margin-right: 12px;
+    margin-right: 22px;
     border-radius: 4px;
     background: #f7f7f7;
 
@@ -74,7 +74,7 @@ const CategorySection: React.FC<Props> = (props) => {
       <span className="date">
           2月21日
           <Icon name={"down"}/>
-        </span>
+      </span>
     </Wrapper>
   )
 }

@@ -73,29 +73,10 @@ const Wrapper = styled.section`
 `;
 
 const Tags = () => {
-  const {tags, setTags} = useTags()
+  const {tags, addTag} = useTags()
   const reduceTags = tags.filter(item => item.key === '0')
   const plusTags = tags.filter(item => item.key === '1')
-  const addTag = () => {
-    const tagName = window.prompt('请输入新标签名:')
-    if (tagName) {
-      const oldTags = tags.map(tag => tag.name)
-      if (oldTags.indexOf(tagName) >= 0) {
-        return window.alert('该标签已存在')
-      }
-      setTags([...tags, {iconName: '其它', name: tagName, key: '0', id: createId()}])
-    }
-  }
-  const addPlusTag = () => {
-    const tagName = window.prompt('请输入新标签名:')
-    if (tagName) {
-      const oldTags = tags.map(tag => tag.name)
-      if (oldTags.indexOf(tagName) >= 0) {
-        return window.alert('该标签已存在')
-      }
-      setTags([...tags, {iconName: '其它', name: tagName, key: '1', id: createId()}])
-    }
-  }
+
   return (
     <Layout>
       <Wrapper>
@@ -113,7 +94,7 @@ const Tags = () => {
             </li>
           )}
           <li className="add">
-            <span className="icons" onClick={addTag}><Icon name="添加"/></span>
+            <span className="icons" onClick={() => addTag('0')}><Icon name="添加"/></span>
             <span>添加</span>
           </li>
         </ol>
@@ -128,7 +109,7 @@ const Tags = () => {
             </li>
           )}
           <li className="add">
-            <span className="icons" onClick={addPlusTag}><Icon name="添加"/></span>
+            <span className="icons" onClick={() => addTag('1')}><Icon name="添加"/></span>
             <span>添加</span>
           </li>
         </ol>

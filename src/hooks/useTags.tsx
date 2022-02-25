@@ -23,9 +23,9 @@ const defaultTags: Tag[] = [
   {iconName: '基金', name: '基金', key: '1', id: createId()},
   {iconName: '股票', name: '股票', key: '1', id: createId()},
   {iconName: '回款', name: '回款', key: '1', id: createId()},
-  {iconName: '兼职', name: '兼职', key: '1', id: createId()},
   {iconName: '收红包', name: '收红包', key: '1', id: createId()},
   {iconName: '收转账', name: '收转账', key: '1', id: createId()},
+  {iconName: '兼职', name: '兼职', key: '1', id: createId()},
   {iconName: '利息', name: '利息', key: '1', id: createId()},
   {iconName: '其它', name: '其它', key: '1', id: createId()},
 ]
@@ -53,7 +53,17 @@ const useTags = () => {
   const deleteTag = (id: number) => {
     setTags(tags.filter(tag => tag.id !== id))
   }
-  return {tags, setTags, findTag, updateTag, deleteTag, findIndex}
+  const addTag = (key: '0' | '1') => {
+    const tagName = window.prompt('请输入新标签名:')
+    if (tagName) {
+      const oldTags = tags.map(tag => tag.name)
+      if (oldTags.indexOf(tagName) >= 0) {
+        return window.alert('该标签已存在')
+      }
+      setTags([...tags, {iconName: '其它', name: tagName, key, id: createId()}])
+    }
+  }
+  return {tags, setTags, findTag, updateTag, deleteTag, findIndex, addTag}
 }
 
 export {useTags}
