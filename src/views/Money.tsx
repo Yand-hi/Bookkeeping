@@ -5,6 +5,7 @@ import {TagsSection} from './Money/TagsSection'
 import {NoteSection} from './Money/NoteSection'
 import {CategorySection} from './Money/CategorySection'
 import {NumberPadSection} from './Money/NumberPadSection'
+import {useRecords} from '../hooks/useRecords'
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -26,8 +27,13 @@ const Money = () => {
       ...obj
     })
   }
+  const {addRecord} = useRecords()
+  const submit = () => {
+    addRecord(selected)
+  }
   return (
     <MyLayout>
+      {JSON.stringify(selected)}
       <CategorySection value={selected.category}
                        onChange={category => onChange({category})}/>
       <TagsSection value={selected.tagId}
@@ -38,9 +44,7 @@ const Money = () => {
       <NumberPadSection value={selected.amount}
                         types={selected.category}
                         onChange={amount => onChange({amount})}
-                        onOk={() => {
-                          console.log('OK')
-                        }}/>
+                        onOk={submit}/>
     </MyLayout>
   );
 }

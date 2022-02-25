@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import Layout from 'components/Layout'
 import {useTags} from 'hooks/useTags'
-import {createId} from 'lib/createId'
 import Icon from 'components/Icon'
 import styled from 'styled-components'
 
@@ -76,7 +75,6 @@ const Tags = () => {
   const {tags, addTag} = useTags()
   const reduceTags = tags.filter(item => item.key === '0')
   const plusTags = tags.filter(item => item.key === '1')
-
   return (
     <Layout>
       <Wrapper>
