@@ -14,13 +14,15 @@ const MyLayout = styled(Layout)`
 `
 
 type Category = '0' | '1'
+
+const defaultFormData = {
+  category: '0' as Category,
+  tagId: [] as number[],
+  note: '',
+  amount: 0
+}
 const Money = () => {
-  const [selected, setSelected] = useState({
-    category: '0' as Category,
-    tagId: [] as number[],
-    note: '',
-    amount: 0
-  })
+  const [selected, setSelected] = useState(defaultFormData)
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({
       ...selected,
@@ -30,10 +32,11 @@ const Money = () => {
   const {addRecord} = useRecords()
   const submit = () => {
     addRecord(selected)
+    alert('已添加一笔')
+    setSelected(defaultFormData)
   }
   return (
     <MyLayout>
-      {JSON.stringify(selected)}
       <CategorySection value={selected.category}
                        onChange={category => onChange({category})}/>
       <TagsSection value={selected.tagId}

@@ -6,14 +6,17 @@ type RecordItem = {
   tagId: number[],
   note: string,
   amount: number
+  createdAt: string
 }
+type newRecordItem = Omit<RecordItem, 'createdAt'>
 
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([])
   useEffect(() => {
     setRecords(JSON.parse(window.localStorage.getItem('records') || '[]'))
   }, [])
-  const addRecord = (record: RecordItem) => {
+  const addRecord = (newRecord: newRecordItem) => {
+    const record = {...newRecord, createdAt: (new Date()).toISOString()}
     setRecords([...records, record])
   }
   useUpdate(() => {
