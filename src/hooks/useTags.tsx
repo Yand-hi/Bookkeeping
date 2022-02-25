@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {createId} from 'lib/createId'
 
 type Tag = {
@@ -29,9 +29,25 @@ const defaultTags: Tag[] = [
   {iconName: '利息', name: '利息', key: '1', id: createId()},
   {iconName: '其它', name: '其它', key: '1', id: createId()},
 ]
+
 const useTags = () => {
-  const [tags, setTags] = useState<Tag[]>(defaultTags)
+  const [tags, setTags] = useState<Tag[]>([])
+
+  useEffect(() => {
+    setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'))
+  }, [])
+  const count = useRef(0)
+  useEffect(() => {
+    count.current += 1
+  })
+  useEffect(() => {
+    if (count.current > 1) {
+      window.localStorage.setItem('tags', JSON.stringify(tags))
+    }
+  }, [tags])
+
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0]
+
   const findIndex = (id: number) => {
     let result = -1
     for (let i = 0; i < tags.length; i++) {
@@ -42,6 +58,7 @@ const useTags = () => {
     }
     return result
   }
+
   const updateTag = (id: number, {name}: { name: string }) => {
     const index = findIndex(id)
     const tagsClone = JSON.parse(JSON.stringify(tags))
@@ -50,9 +67,11 @@ const useTags = () => {
     tagsClone.splice(index, 1, {iconName, name, key, id});
     setTags(tagsClone)
   }
+
   const deleteTag = (id: number) => {
     setTags(tags.filter(tag => tag.id !== id))
   }
+
   const addTag = (key: '0' | '1') => {
     const tagName = window.prompt('请输入新标签名:')
     if (tagName) {
@@ -63,6 +82,7 @@ const useTags = () => {
       setTags([...tags, {iconName: '其它', name: tagName, key, id: createId()}])
     }
   }
+
   return {tags, setTags, findTag, updateTag, deleteTag, findIndex, addTag}
 }
 
