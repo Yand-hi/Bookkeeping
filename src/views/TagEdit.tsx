@@ -74,7 +74,7 @@ const TagEdit: React.FC = () => {
         </IconWrapper>
       </Center>
       <InputWrapper>
-        <Input label="标签名:"
+        <Input label="编辑标签名:"
                type="text"
                placeholder="编辑标签名..."
                value={tag.name}
