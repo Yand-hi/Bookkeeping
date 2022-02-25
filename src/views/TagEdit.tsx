@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {useTags} from 'hooks/useTags'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 import Layout from 'components/Layout'
 import Icon from 'components/Icon'
 import {Input} from 'components/Input'
@@ -60,6 +60,10 @@ const TagEdit: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags()
   const {id} = useParams<Params>()
   const tag = findTag(parseInt(id))
+  const history = useHistory()
+  const goBack = () => {
+    history.goBack()
+  }
   const tagContent = (tag: Tag) => (
     <div>
       <Space/>
@@ -92,7 +96,9 @@ const TagEdit: React.FC = () => {
   return (
     <Layout>
       <TopBar>
-        <Icon name="left"/>
+        <Icon name="left"
+              className="left"
+              onClick={goBack}/>
         <span>编辑标签</span>
         <Icon/>
       </TopBar>
