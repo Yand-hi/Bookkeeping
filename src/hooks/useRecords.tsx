@@ -1,7 +1,7 @@
-import {useEffect, useState} from 'react'
-import {useUpdate} from './useUpdate'
+import { useEffect, useState } from 'react'
+import { useUpdate } from './useUpdate'
 
-type RecordItem = {
+export type RecordItem = {
   category: '0' | '1',
   tagId: number[],
   note: string,
@@ -25,14 +25,14 @@ const useRecords = () => {
       alert('请至少选择一个标签')
       return false
     }
-    const record = {...newRecord, createdAt: (new Date()).toISOString()}
+    const record = { ...newRecord, createdAt: (new Date()).toISOString() }
     setRecords([...records, record])
     return true
   }
   useUpdate(() => {
     window.localStorage.setItem('record', JSON.stringify(records))
   }, [records])
-  return {records, addRecord}
+  return { records, addRecord }
 }
 
-export {useRecords}
+export { useRecords }
