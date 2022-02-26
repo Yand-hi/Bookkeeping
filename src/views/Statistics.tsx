@@ -6,14 +6,16 @@ import { RecordItem, useRecords } from 'hooks/useRecords'
 import { useTags } from 'hooks/useTags'
 import Icon from 'components/Icon'
 import day from 'dayjs'
+import classNames from 'classnames'
 
 const Wrapper = styled.div`
+  overflow: scroll;
   .recordWrapper{
     display: flex;
     justify-content: left;
     align-items: center;
-    padding: 16px 16px 0;
-    .icons{
+    padding: 0 16px 10px;
+    .icons0{
       width: 40px;
       height: 40px;
       padding: 2px;
@@ -22,6 +24,17 @@ const Wrapper = styled.div`
         width: 36px;
         height: 36px;
         fill: #3eb575;
+      }
+    }
+    .icons1{
+      width: 40px;
+      height: 40px;
+      padding: 2px;
+      border-radius: 50%;
+      .icon{
+        width: 36px;
+        height: 36px;
+        fill: #f0b73a;
       }
     }
     .record{
@@ -45,16 +58,22 @@ const Wrapper = styled.div`
     }
   }
 `
+const Header = styled.p`
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 20px;
+  padding: 16px 20px 10px;
+`;
 
 const Statistics: React.FC = () => {
   const [category, setCategory] = useState<'0' | '1'>('0')
   const { records } = useRecords()
   const { getName } = useTags()
-  const hash: { [K: string]: RecordItem[] } = {}; // {'2020-05-11': [item, item], '2020-05-10': [item, item], '2020-05-12': [item, item, item, item]}
+  const hash: { [K: string]: RecordItem[] } = {};
   const selectedRecords = records.filter(r => r.category === category);
 
   selectedRecords.map(r => {
-    const key = day(r.createdAt).format('YYYY年MM月DD日');
+    const key = day(r.createdAt).format('MM/DD');
     if (!(key in hash)) {
       hash[key] = [];
     }
@@ -72,24 +91,29 @@ const Statistics: React.FC = () => {
       <CategorySection value={category}
         onChange={value => setCategory(value)} />
       <Wrapper>
-        {records.map(r => {
-          return <div className='recordWrapper'>
-            <span className='icons'>
-              <Icon name={getName(r.tagId[0])[0]} />
-            </span>
-            <ul className='record'>
-              <li className='tag-amount'>
-                <span>{getName(r.tagId[0])[1]}</span>
-                <span className='amount'>-{r.amount}</span>
-              </li>
-              <li className='date-note'>
-                <span>{day(r.createdAt).format('HH:mm')} </span>
-                |
-                <span> {r.note}</span>
-              </li>
-            </ul>
-          </div>;
-        })}
+        {array.map(([date, records]) => <div>
+          <Header>
+            {date}
+          </Header>
+          {records.map(r => {
+            return <div className='recordWrapper'>
+              <span className={'icons' + r.category}>
+                <Icon name={getName(r.tagId[0])[0]} />
+              </span>
+              <ul className='record'>
+                <li className='tag-amount'>
+                  <span>{getName(r.tagId[0])[1]}</span>
+                  <span className='amount'>{r.category === '0' ? '-' : '+'}{r.amount}</span>
+                </li>
+                <li className='date-note'>
+                  <span>{day(r.createdAt).format('HH:mm')} </span>
+                  |
+                  <span> {r.note}</span>
+                </li>
+              </ul>
+            </div>;
+          })}
+        </div>)}
       </Wrapper>
     </Layout>
   )
