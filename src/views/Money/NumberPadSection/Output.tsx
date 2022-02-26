@@ -4,12 +4,11 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   position: absolute;
   left: 10px;
-  top: 20vh;
+  top: 14vh;
 
   > .output {
     background: white;
     font-size: 36px;
-    line-height: 60px;
     text-align: right;
     padding: 0 12px;
 

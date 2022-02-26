@@ -18,7 +18,7 @@ const Wrapper = styled.section`
       width: 25%;
       height: 64px;
       border-radius: 8px;
-      border: 4px solid #fafafa;
+      border: 2px solid #fafafa;
 
       &.ok0 {
         background: #3eb575;

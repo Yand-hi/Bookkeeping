@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Icon from '../../components/Icon'
 
 const Wrapper = styled.section`
-  margin-top: 50px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
 

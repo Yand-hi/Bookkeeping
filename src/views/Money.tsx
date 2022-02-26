@@ -31,9 +31,10 @@ const Money = () => {
   }
   const {addRecord} = useRecords()
   const submit = () => {
-    addRecord(selected)
-    alert('已添加一笔')
-    setSelected(defaultFormData)
+    if (addRecord(selected)) {
+      alert('已添加一笔')
+      setSelected(defaultFormData)
+    }
   }
   return (
     <MyLayout>

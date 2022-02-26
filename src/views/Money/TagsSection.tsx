@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Icon from 'components/Icon'
 import {useTags} from 'hooks/useTags'
-import {createId} from 'lib/createId'
 
 const Wrapper = styled.section`
   background: white;
@@ -15,7 +14,7 @@ const Wrapper = styled.section`
 
   > ol {
     width: 100%;
-    height: 26vh;
+    max-height: 28vh;
     display: flex;
     border-top: 1px solid #e5e5e5;
     flex-wrap: wrap;
@@ -82,22 +81,12 @@ type Props = {
   onChange: (selected: number[]) => void
 }
 const TagsSection: React.FC<Props> = (props) => {
-  const {tags, setTags} = useTags()
+  const {tags, addTag} = useTags()
   const types = props.types
   const reduceTags = tags.filter(item => item.key === '0')
   const plusTags = tags.filter(item => item.key === '1')
   const partTags = types === '0' ? reduceTags : plusTags
   const selectedTagId = props.value
-  const addTag = () => {
-    const tagName = window.prompt('请输入新标签名:')
-    if (tagName) {
-      const oldTags = tags.map(tag => tag.name)
-      if (oldTags.indexOf(tagName) >= 0) {
-        return window.alert('该标签已存在')
-      }
-      setTags([...tags, {iconName: '其它', name: tagName, key: types === '0' ? '0' : '1', id: createId()}])
-    }
-  }
   const onToggleTag = (tagId: number) => {
     props.onChange([tagId])
   }
@@ -115,7 +104,7 @@ const TagsSection: React.FC<Props> = (props) => {
           </li>
         )}
         <li className="add">
-          <span className="icons" onClick={addTag}><Icon name="添加"/></span>
+          <span className="icons" onClick={() => addTag(types)}><Icon name="添加"/></span>
           <span>添加</span>
         </li>
       </ol>
