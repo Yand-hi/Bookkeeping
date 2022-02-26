@@ -83,7 +83,12 @@ const useTags = () => {
     }
   }
 
-  return {tags, setTags, findTag, updateTag, deleteTag, findIndex, addTag}
+  const getName = (id: number) => {
+    const tag = tags.filter(tag => tag.id === id)[0]
+    return tag ? [tag.iconName, tag.name] : '无'
+  }
+
+  return {tags, setTags, findTag, updateTag, deleteTag, findIndex, addTag, getName}
 }
 
 export {useTags}

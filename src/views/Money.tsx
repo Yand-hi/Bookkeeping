@@ -23,13 +23,13 @@ const defaultFormData = {
 }
 const Money = () => {
   const [selected, setSelected] = useState(defaultFormData)
+  const {addRecord} = useRecords()
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({
       ...selected,
       ...obj
     })
   }
-  const {addRecord} = useRecords()
   const submit = () => {
     if (addRecord(selected)) {
       alert('已添加一笔')
