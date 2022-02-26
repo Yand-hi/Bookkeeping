@@ -1,12 +1,11 @@
-import React, { useState, ReactNode } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
+import Layout from 'components/Layout'
 import { CategorySection } from './Money/CategorySection'
 import { RecordItem, useRecords } from 'hooks/useRecords'
 import { useTags } from 'hooks/useTags'
 import Icon from 'components/Icon'
 import day from 'dayjs'
-import classNames from 'classnames'
 
 const Wrapper = styled.div`
   overflow: scroll;
@@ -62,9 +61,8 @@ const Header = styled.p`
   font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
   line-height: 20px;
-  padding: 16px 20px 10px;
-`;
-
+  padding: 24px 22px 0;
+`
 const Statistics: React.FC = () => {
   const [category, setCategory] = useState<'0' | '1'>('0')
   const { records } = useRecords()
@@ -118,4 +116,5 @@ const Statistics: React.FC = () => {
     </Layout>
   )
 }
+
 export default Statistics

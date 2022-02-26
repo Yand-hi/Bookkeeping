@@ -1,24 +1,10 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import Icon from '../../components/Icon'
 
 const Wrapper = styled.section`
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
-
-  .date {
-    color: black;
-    padding: 5px 10px;
-    text-align: center;
-    margin-right: 22px;
-    border-radius: 4px;
-    background: #f7f7f7;
-
-    .icon {
-      padding-top: 4px;
-    }
-  }
 
   > ul {
     display: flex;
@@ -71,10 +57,6 @@ const CategorySection: React.FC<Props> = (props) => {
           </li>
         )}
       </ul>
-      <span className="date">
-          2月21日
-          <Icon name={"down"}/>
-      </span>
     </Wrapper>
   )
 }
