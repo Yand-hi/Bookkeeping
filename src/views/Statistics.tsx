@@ -8,7 +8,7 @@ import Icon from 'components/Icon'
 import day from 'dayjs'
 
 const Wrapper = styled.div`
-  overflow: scroll;
+  overflow: auto;
   .recordWrapper{
     display: flex;
     justify-content: left;
