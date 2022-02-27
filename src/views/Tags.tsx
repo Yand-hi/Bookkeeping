@@ -25,7 +25,10 @@ const Wrapper = styled.section`
   }
 
   > ol {
+    border-bottom: 1px solid #e5e5e5;
     width: 100%;
+    max-height: 250px;
+    overflow: auto;
     display: flex;
     flex-wrap: wrap;
 

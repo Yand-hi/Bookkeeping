@@ -14,11 +14,11 @@ const Wrapper = styled.section`
 
   > ol {
     width: 100%;
-    max-height: 28vh;
+    max-height: 220px;
     display: flex;
     border-top: 1px solid #e5e5e5;
     flex-wrap: wrap;
-    overflow: scroll;
+    overflow: auto;
 
     > li {
       width: 20%;
