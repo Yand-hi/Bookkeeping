@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  margin-top: 40px;
+  margin-top: 36px;
   display: flex;
   justify-content: space-between;
 

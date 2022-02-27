@@ -6,6 +6,7 @@ import NoMatch from './views/NoMatch'
 import Money from './views/Money'
 import Tags from './views/Tags'
 import {TagEdit} from './views/TagEdit'
+import 'antd/es/message/style/index.css'
 
 const AppWrapper = styled.div`
   color: #333;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useUpdate } from './useUpdate'
+import { message } from 'antd';
 
 export type RecordItem = {
   category: '0' | '1',
@@ -16,13 +17,12 @@ const useRecords = () => {
     setRecords(JSON.parse(window.localStorage.getItem('record') || '[]'))
   }, [])
   const addRecord = (newRecord: newRecordItem) => {
-    //  TODO
     if (newRecord.amount === 0) {
-      alert('输入金额需大于0')
+      message.warning('输入金额需大于0')
       return false
     }
     if (newRecord.tagId.length === 0) {
-      alert('请至少选择一个标签')
+      message.warning('请至少选择一个标签')
       return false
     }
     const record = { ...newRecord, createdAt: (new Date()).toISOString() }

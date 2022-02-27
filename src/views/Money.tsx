@@ -6,6 +6,7 @@ import { NoteSection } from './Money/NoteSection'
 import { CategorySection } from './Money/CategorySection'
 import { NumberPadSection } from './Money/NumberPadSection'
 import { useRecords } from '../hooks/useRecords'
+import { message } from 'antd'
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -32,7 +33,7 @@ const Money: React.FC = () => {
   }
   const submit = () => {
     if (addRecord(selected)) {
-      alert('已添加一笔')
+      message.success('已添加一笔')
       setSelected(defaultFormData)
     }
   }

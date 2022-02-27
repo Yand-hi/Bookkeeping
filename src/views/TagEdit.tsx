@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import {useTags} from 'hooks/useTags'
-import {useParams, useHistory} from 'react-router-dom'
+import { useTags } from 'hooks/useTags'
+import { useParams, useHistory } from 'react-router-dom'
 import Layout from 'components/Layout'
 import Icon from 'components/Icon'
-import {Input} from 'components/Input'
-import {Space} from 'components/Space'
-import {Center} from 'components/Center'
+import { Input } from 'components/Input'
+import { Space } from 'components/Space'
+import { Center } from 'components/Center'
 
 const TopBar = styled.header`
   display: flex;
@@ -57,8 +57,8 @@ type Tag = {
   id: number,
 }
 const TagEdit: React.FC = () => {
-  const {findTag, updateTag, deleteTag} = useTags()
-  const {id} = useParams<Params>()
+  const { findTag, updateTag, deleteTag } = useTags()
+  const { id } = useParams<Params>()
   const tag = findTag(parseInt(id))
   const history = useHistory()
   const goBack = () => {
@@ -66,26 +66,26 @@ const TagEdit: React.FC = () => {
   }
   const tagContent = (tag: Tag) => (
     <div>
-      <Space/>
-      <Space/>
+      <Space />
+      <Space />
       <Center>
         <IconWrapper className={'editTag' + tag.key}>
-          <Icon name={tag.iconName}/>
+          <Icon name={tag.iconName} />
         </IconWrapper>
       </Center>
       <InputWrapper>
         <Input label="编辑标签名:"
-               type="text"
-               placeholder="编辑标签名..."
-               value={tag.name}
-               onChange={(e) =>
-                 updateTag(tag.id, {name: e.target.value})
-               }/>
+          type="text"
+          placeholder="编辑标签名..."
+          value={tag.name}
+          onChange={(e) =>
+            updateTag(tag.id, { name: e.target.value })
+          } />
       </InputWrapper>
       <Center>
-        <Space/>
-        <Space/>
-        <Space/>
+        <Space />
+        <Space />
+        <Space />
         <Button onClick={() =>
           deleteTag(tag.id)
         }>删除标签
@@ -97,14 +97,14 @@ const TagEdit: React.FC = () => {
     <Layout>
       <TopBar>
         <Icon name="left"
-              className="left"
-              onClick={goBack}/>
+          className="left"
+          onClick={goBack} />
         <span>编辑标签</span>
-        <Icon/>
+        <Icon />
       </TopBar>
-      {tag ? tagContent(tag) : <Center>tag 不存在</Center>}
+      {tag ? tagContent(tag) : <Center><Space />tag 不存在</Center>}
     </Layout>
   )
 }
 
-export {TagEdit}
+export { TagEdit }

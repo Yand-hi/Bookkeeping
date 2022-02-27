@@ -57,6 +57,19 @@ const Wrapper = styled.div`
     }
   }
 `
+const Empty = styled.div`
+  width: 140px;
+  height: 140px;
+  color: #e5e5e5;
+  margin: 100px auto;
+  .icon{
+    width: 140px;
+    height: 140px;
+  }
+  p{
+    text-align: center;
+  }
+`
 const Header = styled.p`
   font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
@@ -88,31 +101,37 @@ const Statistics: React.FC = () => {
     <Layout>
       <CategorySection value={category}
         onChange={value => setCategory(value)} />
-      <Wrapper>
-        {array.map(([date, records]) => <div>
-          <Header>
-            {date}
-          </Header>
-          {records.map(r => {
-            return <div className='recordWrapper'>
-              <span className={'icons' + r.category}>
-                <Icon name={getName(r.tagId[0])[0]} />
-              </span>
-              <ul className='record'>
-                <li className='tag-amount'>
-                  <span>{getName(r.tagId[0])[1]}</span>
-                  <span className='amount'>{r.category === '0' ? '-' : '+'}{r.amount}</span>
-                </li>
-                <li className='date-note'>
-                  <span>{day(r.createdAt).format('HH:mm')} </span>
-                  |
-                  <span> {r.note}</span>
-                </li>
-              </ul>
-            </div>;
-          })}
-        </div>)}
-      </Wrapper>
+      {selectedRecords.length > 0 ?
+        <Wrapper>
+          {array.map(([date, records]) => <div>
+            <Header>
+              {date}
+            </Header>
+            {records.map(r => {
+              return <div className='recordWrapper'>
+                <span className={'icons' + r.category}>
+                  <Icon name={getName(r.tagId[0])[0]} />
+                </span>
+                <ul className='record'>
+                  <li className='tag-amount'>
+                    <span>{getName(r.tagId[0])[1]}</span>
+                    <span className='amount'>{r.category === '0' ? '-' : '+'}{r.amount}</span>
+                  </li>
+                  <li className='date-note'>
+                    <span>{day(r.createdAt).format('HH:mm')} </span>
+                    |
+                    <span> {r.note}</span>
+                  </li>
+                </ul>
+              </div>;
+            })}
+          </div>)}
+        </Wrapper>
+        : <Empty>
+          <Icon name='empty' />
+          <p>空空如也~</p>
+          <p>快去记一笔吧！</p>
+        </Empty>}
     </Layout>
   )
 }
