@@ -11,7 +11,8 @@ import 'antd/es/message/style/index.css'
 const AppWrapper = styled.div`
   max-width: 450px;
   margin: 0 auto;
-  border: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
   color: #333;
 `;
 
